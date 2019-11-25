@@ -4,6 +4,7 @@ use ieee.std_logic_unsigned.all;
 use ieee.numeric_std.all;
 
 library work;
+use work.global_package.all
 
 entity memory_module_top is
     port
