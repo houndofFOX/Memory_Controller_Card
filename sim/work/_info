@@ -8,3 +8,149 @@ z2
 !i10f 100
 cModel Technology
 dD:/altera/15.0/modelsim_ase/win32aloem
+Pglobal_package
+Z0 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z1 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+w1575009694
+Z5 dC:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/sim
+8C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/global_package.vhd
+FC:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/global_package.vhd
+l0
+L8
+Vcl:cZ<Eo_[oRXZCDh1FW72
+!s100 Z?3n_`J9F33:co><b:d;21
+Z6 OP;C;10.4a;61
+33
+Z7 !s110 1575096413
+!i10b 1
+Z8 !s108 1575096413.000000
+!s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/global_package.vhd|
+!s107 C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/global_package.vhd|
+!i113 1
+Z9 o-work work -2008 -explicit -O0
+Z10 tExplicit 1
+Emem_card_top
+w1575093481
+Z11 DPx4 work 14 global_package 0 22 cl:cZ<Eo_[oRXZCDh1FW72
+DPx8 synopsys 10 attributes 0 22 liCm]LV3<lX4Zl>o6^8IV1
+DPx4 ieee 14 std_logic_misc 0 22 BLzBaQbXS>Q1z>5YO]m[52
+DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
+R0
+R1
+R2
+R3
+R4
+R5
+8C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd
+FC:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd
+l0
+L13
+V5za2SM1ZlRmi;Z=E0cT>[0
+!s100 aY?L23K3TWbS0BWo6d2=h1
+R6
+33
+R7
+!i10b 1
+R8
+!s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd|
+!s107 C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd|
+!i113 1
+R9
+R10
+Ememory_card_tb
+Z12 w1575019899
+R11
+R2
+R0
+R1
+R3
+R4
+R5
+Z13 8C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/sim/memory_card_tb.vhd
+Z14 FC:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/sim/memory_card_tb.vhd
+l0
+L10
+V>d[18]K3K1blN8MXk>@e01
+!s100 Ld[QX^K`S@lI9oA0f14P43
+R6
+33
+R7
+!i10b 1
+R8
+Z15 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/sim/memory_card_tb.vhd|
+Z16 !s107 C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/sim/memory_card_tb.vhd|
+!i113 1
+R9
+R10
+Artl
+R11
+R2
+R0
+R1
+R3
+R4
+Z17 DEx4 work 14 memory_card_tb 0 22 >d[18]K3K1blN8MXk>@e01
+l55
+L13
+Z18 Vc31d=7IE<n6H7[mF1<JZ`3
+Z19 !s100 ><mVYTPJQ73Bbamb^TXfg1
+R6
+33
+R7
+!i10b 1
+R8
+R15
+R16
+!i113 1
+R9
+R10
+Ememory_module_top
+Z20 w1575096407
+R11
+R2
+R0
+R1
+R3
+R4
+R5
+Z21 8C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_module_top.vhd
+Z22 FC:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_module_top.vhd
+l0
+L9
+VhHdiFLnfFfcF=bQZ@Ik`82
+!s100 H;L[^Z6nCS?7ZFl[iPYof0
+R6
+33
+R7
+!i10b 1
+R8
+Z23 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_module_top.vhd|
+Z24 !s107 C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_module_top.vhd|
+!i113 1
+R9
+R10
+Amemory_module_top
+R11
+R2
+R0
+R1
+R3
+R4
+DEx4 work 17 memory_module_top 0 22 hHdiFLnfFfcF=bQZ@Ik`82
+l32
+L25
+VmTYeDCE[U`dnQmeQ9z_Ci1
+!s100 O8LJ]b>^WIWe[dz^I7o5b0
+R6
+33
+R7
+!i10b 1
+R8
+R23
+R24
+!i113 1
+R9
+R10

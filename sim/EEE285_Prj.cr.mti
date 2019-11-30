@@ -1,1 +1,98 @@
+C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_module_top.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_module_top.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Loading package global_package
+-- Compiling entity memory_module_top
+-- Compiling architecture memory_module_top of memory_module_top
 
+} {} {}} C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd {0 {vcom -work work -2008 -explicit -stats=none C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package MATH_REAL
+-- Loading package ATTRIBUTES
+-- Loading package std_logic_misc
+-- Loading package global_package
+-- Compiling entity mem_card_top
+-- Compiling architecture mem_card_top of mem_card_top
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(77): (vcom-1136) Unknown identifier "i_cbe_lower".
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(77): Expression is not a signal.
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(77): (vcom-1136) Unknown identifier "i_cbe_upper".
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(77): Expression is not a signal.
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(84): (vcom-1136) Unknown identifier "i_cbe_upper".
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(84): (vcom-1136) Unknown identifier "i_cbe_lower".
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(84): Bad expression in left operand of infix expression "&".
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(84): Bad expression in right operand of infix expression "&".
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(84): Type error resolving infix expression "&" as type ieee.std_logic_1164.STD_LOGIC_VECTOR.
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(87): (vcom-1136) Unknown identifier "i_cbe_lower".
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(87): (vcom-1136) Unknown identifier "i_cbe_lower".
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(87): Bad expression in left operand of infix expression "&".
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(87): Bad expression in right operand of infix expression "&".
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(87): Type error resolving infix expression "&" as type ieee.std_logic_1164.STD_LOGIC_VECTOR.
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(143): near "'": syntax error
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(195): near "when": (vcom-1576) expecting ')'.
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(197): Illegal target for signal assignment.
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(197): (vcom-1136) Unknown identifier "o_trdy".
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(199): (vcom-1136) Unknown identifier "READ64_WAIT".
+
+-- Loading entity memory_module_top
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(229): (vcom-1035) Formal port "i_clk" has OPEN or no actual associated with it.
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(241): (vcom-1035) Formal port "i_clk" has OPEN or no actual associated with it.
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(253): (vcom-1035) Formal port "i_clk" has OPEN or no actual associated with it.
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(265): (vcom-1035) Formal port "i_clk" has OPEN or no actual associated with it.
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(276): (vcom-1035) Formal port "i_clk" has OPEN or no actual associated with it.
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(288): (vcom-1035) Formal port "i_clk" has OPEN or no actual associated with it.
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(300): (vcom-1035) Formal port "i_clk" has OPEN or no actual associated with it.
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(312): (vcom-1035) Formal port "i_clk" has OPEN or no actual associated with it.
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(116): (vcom-1339) Case statement choices cover only 5 out of 7 cases.
+
+** Error: C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/memory_card_top.vhd(313): VHDL Compiler exiting
+
+} {15.0 16.0 17.0 19.0 20.0 22.0 23.0 24.0 25.0 29.0 30.0 31.0 32.0 37.0 38.0 40.0 41.0 42.0 44.0 45.0 46.0 47.0 48.0 49.0 50.0 51.0 52.0 53.0 54.0 55.0 56.0 57.0 58.0 59.0 60.0 61.0 62.0 63.0} {}} C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/global_package.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/src/global_package.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling package global_package
+
+} {} {}} C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/sim/memory_card_tb.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/sim/memory_card_tb.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Loading package global_package
+-- Compiling entity memory_card_tb
+-- Compiling architecture rtl of memory_card_tb
+
+} {} {}}
