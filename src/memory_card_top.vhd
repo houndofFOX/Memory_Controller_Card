@@ -87,7 +87,33 @@ begin
         s_cs <= (s_cs_addr(7 downto 4) and not i_cbe_lower_l) & (s_cs_addr(3 downto 0) and not i_cbe_lower_l);
       end if;
     end if;
+  end process;
 
+  -- Set chip selects
+  process(i_reset, s_state, i_frame_l, io_addr_data, i_cbe_lower_l) is
+  begin
+    if (i_reset = '1') then
+      s_cs_addr <= (others => '0');
+    else
+      if (s_state = IDLE) then
+        s_cs_addr <= (others => '0');
+        if (i_frame_l = '0' and io_addr_data(31 downto 18) = ZERO_ADDR and i_cbe_lower_l /= DUAL_ADDR_CYCLE) then
+          if (i_req64_l = '0') then
+            s_cs_addr <= (others => '1');
+          else
+            s_cs_addr <= x"F0" when (io_addr_data(2) = '1') else x"0F";
+          end if;
+        end if;
+      elsif (s_state = READ_WAIT) then
+        -- 64 bit
+        if (s_enable_64 = '1') then
+          s_cs_addr <= (others => '1');
+        -- 32 bit
+        else
+          s_cs_addr <= x"F0" when (s_addr(2) = '1') else x"0F";
+        end if;
+      end if;
+    end if;
   end process;
 
   -- State Machine
@@ -105,7 +131,7 @@ begin
       -- Internal signals
       s_addr        <= (others => '0');
       s_readnWrite  <= '1';
-      s_cs_addr     <= (others => '0');
+      -- s_cs_addr     <= (others => '0');
       for i in 0 to 7 loop
         s_datas(i) <= (others => '0');
       end loop;
@@ -125,7 +151,7 @@ begin
           -- Set signal defaults
           s_addr        <= (others => '0');
           s_readnWrite  <= '1';
-          s_cs_addr     <= (others => '0');
+          -- s_cs_addr     <= (others => '0');
           s_enable_64   <= '0';
           -- Wait for Frame assert, check address and dual address mode
           if (i_frame_l = '0' and io_addr_data(31 downto 18) = ZERO_ADDR and i_cbe_lower_l /= DUAL_ADDR_CYCLE) then
@@ -144,10 +170,10 @@ begin
             -- Set chip selects
             -- 64 bit
             if (i_req64_l = '0') then
-              s_cs_addr <= (others => '1');
+              -- s_cs_addr <= (others => '1');
             -- 32 bit
             else
-              s_cs_addr <= x"F0" when (io_addr_data(2) = '1') else x"0F";
+              -- s_cs_addr <= x"F0" when (io_addr_data(2) = '1') else x"0F";
             end if;
             -- Save 64 bit toggle
             s_enable_64 <= '1' when i_req64_l = '0' else '0';
@@ -188,10 +214,10 @@ begin
           -- Set chip selects
           -- 64 bit
           if (s_enable_64 = '1') then
-            s_cs_addr <= (others => '1');
+            -- s_cs_addr <= (others => '1');
           -- 32 bit
           else
-            s_cs_addr <= x"F0" when (s_addr(2) = '1') else x"0F";
+            -- s_cs_addr <= x"F0" when (s_addr(2) = '1') else x"0F";
           end if;
           -- Load Data to PCI lines
           for i in 0 to 3 loop

@@ -82,8 +82,53 @@ begin
   end process;
 
   stim: process
+    procedure read32_single (i_addr : in std_logic_vector(31 downto 0)) is
+    begin
+      wait until(rising_edge(s_clk));
+      s_frame_l <= '0';
+      s_addr_data <= i_addr;
+      s_data_upper <= (others => 'Z');
+      s_cbe_lower_l <= c_cmd_read;
+      s_irdy_l <= '1';
+      s_req64_l <= '1';
+      wait until(rising_edge(s_clk)); -- ADDR, CMD, REQ64 read in
+      s_addr_data <= (others => 'Z');  
+      s_cbe_lower_l <= (others => '0');
+      s_cbe_upper_l <= (others => '0');
+      wait until(rising_edge(s_clk)); -- Turnaround
+      s_frame_l <= '1';
+      s_irdy_l <= '0';
+      wait until(rising_edge(s_clk) and s_trdy_l = '0');  -- Data ready for transfer
+      s_cbe_lower_l <= (others => '1');
+      s_cbe_upper_l <= (others => '1');
+      s_irdy_l <= '1';
+    end procedure read32_single;
+
+    procedure read32_burst (i_addr : in std_logic_vector(31 downto 0)) is
+    begin
+      wait until(rising_edge(s_clk));
+      s_frame_l <= '0';
+      s_addr_data <= i_addr;
+      s_data_upper <= (others => 'Z');
+      s_cbe_lower_l <= c_cmd_read;
+      s_irdy_l <= '1';
+      s_req64_l <= '1';
+      wait until(rising_edge(s_clk)); -- ADDR, CMD, REQ64 read in
+      s_addr_data <= (others => 'Z');  
+      s_cbe_lower_l <= (others => '0');
+      wait until(rising_edge(s_clk)); -- Turnaround
+      s_irdy_l <= '0';
+      wait until(rising_edge(s_clk) and s_trdy_l = '0');
+      wait until(rising_edge(s_clk) and s_trdy_l = '0');
+      s_frame_l <= '1';
+      wait until(rising_edge(s_clk) and s_trdy_l = '0');  -- Data ready for transfer
+      s_cbe_lower_l <= (others => '1');
+      s_irdy_l <= '1';
+    end procedure read32_burst;
+
     procedure read64_single (i_addr : in std_logic_vector(31 downto 0)) is
     begin
+      wait until(rising_edge(s_clk));
       s_frame_l <= '0';
       s_addr_data <= i_addr;
       s_data_upper <= (others => 'Z');
@@ -93,7 +138,7 @@ begin
       wait until(rising_edge(s_clk)); -- ADDR, CMD, REQ64 read in
       s_addr_data <= (others => 'Z');  
       s_cbe_lower_l <= (others => '0');
-      s_cbe_upper_l <= (others => '0');
+      s_cbe_upper_l <= x"2";
       wait until(rising_edge(s_clk)); -- Turnaround
       s_frame_l <= '1';
       s_irdy_l <= '0';
@@ -144,10 +189,14 @@ begin
     s_reset <= '1';
     wait until(rising_edge(s_clk));
     s_reset <= '0';
-    wait until(rising_edge(s_clk));
+    wait for 10 ns;
     read64_single(x"00000008");
     wait for 50 ns;
     read64_burst(x"00000000");
+    wait for 50 ns;
+    read32_single(x"00000008");
+    wait for 50 ns;
+    read32_burst(x"00000000");
     wait for 500 ms;
   end process;
 end architecture;
