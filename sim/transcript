@@ -1,0 +1,570 @@
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd failed with 2 errors.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.memory_card_tb
+# //  ModelSim PE Student Edition 10.4a Apr  7 2015 
+# //
+# //  Copyright 1991-2015 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# //  INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# //  DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.
+# //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
+# //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# //
+# // NOT FOR CORPORATE OR PRODUCTION USE.
+# // THE ModelSim PE Student Edition IS NOT A SUPPORTED PRODUCT.
+# // FOR HIGHER EDUCATION PURPOSES ONLY
+# //
+# vsim -gui 
+# Start time: 14:54:58 on Dec 01,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading ieee.math_real(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12361 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+add wave -position insertpoint  \
+sim:/memory_card_tb/s_clk \
+sim:/memory_card_tb/s_reset \
+sim:/memory_card_tb/s_frame_l \
+sim:/memory_card_tb/s_addr_data \
+sim:/memory_card_tb/s_data_upper \
+sim:/memory_card_tb/s_cbe_lower_l \
+sim:/memory_card_tb/s_cbe_upper_l \
+sim:/memory_card_tb/s_irdy_l \
+sim:/memory_card_tb/s_req64_l \
+sim:/memory_card_tb/s_devsel_l \
+sim:/memory_card_tb/s_trdy_l \
+sim:/memory_card_tb/s_ack64_l \
+sim:/memory_card_tb/s_stop
+add wave -position insertpoint  \
+sim:/memory_card_tb/uut/i_clk \
+sim:/memory_card_tb/uut/i_reset \
+sim:/memory_card_tb/uut/i_frame_l \
+sim:/memory_card_tb/uut/io_addr_data \
+sim:/memory_card_tb/uut/io_data_upper \
+sim:/memory_card_tb/uut/i_cbe_lower_l \
+sim:/memory_card_tb/uut/i_cbe_upper_l \
+sim:/memory_card_tb/uut/i_irdy_l \
+sim:/memory_card_tb/uut/i_req64_l \
+sim:/memory_card_tb/uut/o_devsel_l \
+sim:/memory_card_tb/uut/o_trdy_l \
+sim:/memory_card_tb/uut/o_ack64_l \
+sim:/memory_card_tb/uut/o_stop_l \
+sim:/memory_card_tb/uut/s_addr \
+sim:/memory_card_tb/uut/s_readnWrite \
+sim:/memory_card_tb/uut/s_cs \
+sim:/memory_card_tb/uut/s_cs_addr \
+sim:/memory_card_tb/uut/s_datas \
+sim:/memory_card_tb/uut/s_enable_64 \
+sim:/memory_card_tb/uut/s_state
+add wave -position insertpoint  \
+sim:/memory_card_tb/uut/memory_module_top_inst_0/i_clk \
+sim:/memory_card_tb/uut/memory_module_top_inst_0/i_reset \
+sim:/memory_card_tb/uut/memory_module_top_inst_0/i_addr \
+sim:/memory_card_tb/uut/memory_module_top_inst_0/io_data \
+sim:/memory_card_tb/uut/memory_module_top_inst_0/i_cs \
+sim:/memory_card_tb/uut/memory_module_top_inst_0/i_oe \
+sim:/memory_card_tb/uut/memory_module_top_inst_0/i_we \
+sim:/memory_card_tb/uut/memory_module_top_inst_0/s_memory_blk
+add wave -position insertpoint  \
+sim:/memory_card_tb/uut/memory_module_top_inst_1/i_clk \
+sim:/memory_card_tb/uut/memory_module_top_inst_1/i_reset \
+sim:/memory_card_tb/uut/memory_module_top_inst_1/i_addr \
+sim:/memory_card_tb/uut/memory_module_top_inst_1/io_data \
+sim:/memory_card_tb/uut/memory_module_top_inst_1/i_cs \
+sim:/memory_card_tb/uut/memory_module_top_inst_1/i_oe \
+sim:/memory_card_tb/uut/memory_module_top_inst_1/i_we \
+sim:/memory_card_tb/uut/memory_module_top_inst_1/s_memory_blk
+add wave -group "Memory Module 2" /memory_card_tb/utt/memory_module_top_inst_2/i_clk
+# (vish-4014) No objects found matching '/memory_card_tb/utt/memory_module_top_inst_2/i_clk'.
+add wave -group "Memory Module 2" /memory_card_tb/uut/memory_module_top_inst_2/i_clk
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.memory_card_tb
+# vsim 
+# Start time: 18:14:09 on Dec 01,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading ieee.math_real(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12361 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+do debug.do
+run
+run
+restart
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful with warnings.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12362 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful with warnings.
+# 4 compiles, 0 failed with no errors.
+# Load canceled
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12372 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+vsim -gui work.memory_card_tb
+# vsim 
+# Start time: 18:22:42 on Dec 01,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading ieee.math_real(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12372 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+do debug.do
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful with warnings.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.memory_card_tb
+# vsim 
+# Start time: 20:07:06 on Dec 01,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading ieee.math_real(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12380 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+do debug.do
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful with warnings.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.memory_card_tb
+# vsim 
+# Start time: 21:03:53 on Dec 01,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading ieee.math_real(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12380 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+do debug.do
+run
+# Load canceled
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful with warnings.
+# 4 compiles, 0 failed with no errors.
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.memory_card_tb
+# vsim 
+# Start time: 00:36:45 on Dec 02,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading ieee.math_real(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12380 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+do debug.do
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.memory_card_tb
+# vsim 
+# Start time: 00:51:24 on Dec 02,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading ieee.math_real(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12380 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+do debug.do
+run
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.memory_card_tb
+# vsim 
+# Start time: 01:03:41 on Dec 02,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading ieee.math_real(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12450 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+do debug.do
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd failed with 2 errors.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.memory_card_tb
+# vsim 
+# Start time: 01:14:09 on Dec 02,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading ieee.math_real(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12452 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+do debug.do
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd failed with 33 errors.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 1 failed with 33 errors.
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12481 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.memory_card_tb
+# vsim 
+# Start time: 01:40:51 on Dec 02,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.numeric_std(body)
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading ieee.math_real(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12481 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+do debug.do
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd failed with 2 errors.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd failed with 2 errors.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12522 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12522 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 120 ns  Iteration: 1  Instance: /memory_card_tb/uut
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12522 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12522 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# Break key hit
+# Break key hit
+# Break key hit
+# Simulation stop requested.
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12522 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12526 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12526 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+restart
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12526 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12526 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd failed with 4 errors.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 1 failed with 4 errors.
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12501 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12503 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+restart
+run
+# Compile of global_package.vhd was successful.
+# Compile of memory_module_top.vhd was successful.
+# Compile of memory_card_top.vhd was successful.
+# Compile of memory_card_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.global_package
+# Loading work.memory_card_tb(rtl)
+# Loading work.memory_card_top(memory_card_top)
+# Loading work.memory_module_top(memory_module_top)
+# ** Warning: Design size of 12503 statements or 10 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+run
+# End time: 03:24:17 on Dec 02,2019, Elapsed time: 1:43:26
+# Errors: 0, Warnings: 14

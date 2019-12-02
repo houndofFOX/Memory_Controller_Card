@@ -10,7 +10,7 @@ library work;
 -- use work.memory_module_top.all;
 use work.global_package.all;
 
-entity mem_card_top is
+entity memory_card_top is
   port
   (
     -- Clocks and Resets
@@ -30,9 +30,9 @@ entity mem_card_top is
     o_ack64_l           : out std_logic;
     o_stop_l            : out std_logic
   );
-end mem_card_top;
+end memory_card_top;
 
-architecture mem_card_top of mem_card_top is
+architecture memory_card_top of memory_card_top is
   
 --------------------- CONSTANTS ---------------------
   -- PCI Commands
@@ -74,17 +74,17 @@ architecture mem_card_top of mem_card_top is
 
 begin
   -- Configure chip select
-  process(i_reset, s_cs_addr, i_cbe_lower, i_cbe_upper) is
+  process(i_reset, s_cs_addr, i_cbe_lower_l, i_cbe_upper_l) is
   begin
     if(i_reset = '1') then
       s_cs <= (others => '0');
     else
       -- 64 bit mode
       if (s_enable_64 = '1') then
-        s_cs <= (s_cs_addr(7 downto 4) and i_cbe_upper) & (s_cs_addr(3 downto 0) and i_cbe_lower);
+        s_cs <= (s_cs_addr(7 downto 4) and not i_cbe_upper_l) & (s_cs_addr(3 downto 0) and not i_cbe_lower_l);
       -- 32 bit mode
       else
-        s_cs <= (s_cs_addr(7 downto 4) and i_cbe_lower) & (s_cs_addr(3 downto 0) and i_cbe_lower);
+        s_cs <= (s_cs_addr(7 downto 4) and not i_cbe_lower_l) & (s_cs_addr(3 downto 0) and not i_cbe_lower_l);
       end if;
     end if;
 
@@ -140,19 +140,35 @@ begin
             o_ack64_l   <= '0' when i_req64_l = '0' else '1';
             -- Configure internal signals
             -- Save addr to local register
-            s_addr      <= io_addr_data(31 downto 3) & '000';
+            s_addr      <= io_addr_data(31 downto 3) & "000";
+            -- Set chip selects
+            -- 64 bit
+            if (i_req64_l = '0') then
+              s_cs_addr <= (others => '1');
+            -- 32 bit
+            else
+              s_cs_addr <= x"F0" when (io_addr_data(2) = '1') else x"0F";
+            end if;
             -- Save 64 bit toggle
             s_enable_64 <= '1' when i_req64_l = '0' else '0';
             -- Memory Read
             if (i_cbe_lower_l = MEM_READ) then
               -- Set read not write
               s_readnWrite <= '1';
+              -- Allow s_datas to be written to
+              for i in 0 to 7 loop
+                s_datas(i) <= (others => 'Z');
+              end loop;
               -- Next state: Read Turnaround
               s_state <= READ_TA;
             -- Memory Write
             elsif (i_cbe_lower_l = MEM_WRITE) then
               -- Set not "read not write"
               s_readnWrite <= '0';
+              -- Control s_datas
+              for i in 0 to 7 loop
+                s_datas(i) <= (others => 'Z');
+              end loop;
               -- Next State
               s_state <= WRITE_WAIT;
             -- Issue stop, command not supported.
@@ -171,32 +187,40 @@ begin
           o_trdy_l <= '0';
           -- Set chip selects
           -- 64 bit
-          if (i_req64_l = '0') then
+          if (s_enable_64 = '1') then
             s_cs_addr <= (others => '1');
           -- 32 bit
           else
             s_cs_addr <= x"F0" when (s_addr(2) = '1') else x"0F";
           end if;
-          s_state <= READ_M;
-        when READ_M =>
-          -- Check IRDY asserted, TRDY, DEVSEL controled by mem card
-          if (i_irdy_l = '0') then
-            -- Transmit data, load Data to PCI lines
-            for i in 0 to 3 loop
+          -- Load Data to PCI lines
+          for i in 0 to 3 loop
+            if (s_enable_64 = '1') then
               -- Lower 32 bits
               io_addr_data((8 * i + 7) downto (8 * i)) <= s_datas(i) when i_cbe_lower_l(i) = '0' else (others => '0');
               -- Upper 32 bits
               -- Byte enabled, load data
               io_data_upper((8 * i + 7) downto (8 * i)) <= s_datas(i + 4) when i_cbe_upper_l(i) = '0' else (others => '0');
-            end loop;
+            else
+              if (s_addr(2) = '0') then
+                io_addr_data((8 * i + 7) downto (8 * i)) <= s_datas(i) when i_cbe_lower_l(i) = '0' else (others => '0');
+              else
+                io_addr_data((8 * i + 7) downto (8 * i)) <= s_datas(i + 4) when i_cbe_lower_l(i) = '0' else (others => '0');
+              end if;
+            end if;
+          end loop;
+          s_state <= READ_M;
+        when READ_M =>
+          -- Check IRDY asserted, TRDY, DEVSEL controled by mem card
+          if (i_irdy_l = '0') then
             -- Bust Mode
             if (i_frame_l = '0') then
               -- Increment address
-              s_addr <= std_logic_vector(unsigned(s_addr) + 8 when s_enable_64 = '1' else std_logic_vector(unsigned(s_addr) + 4;
+              s_addr <= std_logic_vector(unsigned(s_addr) + 8) when s_enable_64 = '1' else std_logic_vector(unsigned(s_addr) + 4);
               -- Hold bus in wait
-              o_trdy <= '1';
+              o_trdy_l <= '1';
               -- Return to wait state
-              s_state <= READ64_WAIT;
+              s_state <= READ_WAIT;
             -- End Transmission w/ data
             else
               -- Set outputs to inactive to complete transmission
@@ -207,6 +231,12 @@ begin
               s_state <= IDLE;
             end if;
           end if;
+        when WRITE_WAIT =>
+          -- Placeholder
+          s_state <= IDLE;
+        when WRITE_M =>
+          -- Placeholder
+          s_state <= IDLE;
         when STOP_TERM =>
           -- Wait for PCI termination protocol
           if (i_irdy_l = '0' and i_frame_l = '1') then
@@ -219,95 +249,103 @@ begin
   memory_module_top_inst_0 : entity work.memory_module_top
     port map
     (
+      i_clk => i_clk,
       i_reset => i_reset,
 
       i_addr => s_addr (17 downto 3),
       io_data => s_datas(0),
       i_cs => s_cs(0),
       i_oe => s_readnWrite,
-      i_we => (not s_readnWrite) and s_state = WRITE_M and i_irdy_l = '0'
+      i_we => (not s_readnWrite) and (not o_trdy_l) and (not i_irdy_l)
     );
   
   memory_module_top_inst_1 : entity work.memory_module_top
     port map
     (
+      i_clk => i_clk,
       i_reset => i_reset,
 
       i_addr => s_addr(17 downto 3),
       io_data => s_datas(1),
       i_cs => s_cs(1),
       i_oe => s_readnWrite,
-      i_we => (not s_readnWrite) and s_state = WRITE_M and i_irdy_l = '0'
+      i_we => (not s_readnWrite) and (not o_trdy_l) and (not i_irdy_l)
     );
   
   memory_module_top_inst_2 : entity work.memory_module_top
     port map
     (
+      i_clk => i_clk,
       i_reset => i_reset,
 
       i_addr => s_addr(17 downto 3),
       io_data => s_datas(2),
       i_cs => s_cs(2),
       i_oe => s_readnWrite,
-      i_we => (not s_readnWrite) and s_state = WRITE_M and i_irdy_l = '0'
+      i_we => (not s_readnWrite) and (not o_trdy_l) and (not i_irdy_l)
     );
 
   memory_module_top_inst_3 : entity work.memory_module_top
     port map
     (
+      i_clk => i_clk,
       i_reset => i_reset,
 
       i_addr => s_addr(17 downto 3),
       io_data => s_datas(3),
       i_cs => s_cs(3),
       i_oe => s_readnWrite,
-      i_we => (not s_readnWrite) and s_state = WRITE_M and i_irdy_l = '0'
+      i_we => (not s_readnWrite) and (not o_trdy_l) and (not i_irdy_l)
     );
   memory_module_top_inst_4 : entity work.memory_module_top
     port map
     (
+      i_clk => i_clk,
       i_reset => i_reset,
 
       i_addr => s_addr (17 downto 3),
       io_data => s_datas(4),
       i_cs => s_cs(4),
       i_oe => s_readnWrite,
-      i_we => (not s_readnWrite) and s_state = WRITE_M and i_irdy_l = '0'
+      i_we => (not s_readnWrite) and (not o_trdy_l) and (not i_irdy_l)
     );
   
   memory_module_top_inst_5 : entity work.memory_module_top
     port map
     (
+      i_clk => i_clk,
       i_reset => i_reset,
 
       i_addr => s_addr(17 downto 3),
       io_data => s_datas(5),
       i_cs => s_cs(5),
       i_oe => s_readnWrite,
-      i_we => (not s_readnWrite) and s_state = WRITE_M and i_irdy_l = '0'
+      i_we => (not s_readnWrite) and (not o_trdy_l) and (not i_irdy_l)
     );
   
   memory_module_top_inst_6 : entity work.memory_module_top
     port map
     (
+      i_clk => i_clk,
       i_reset => i_reset,
 
       i_addr => s_addr(17 downto 3),
       io_data => s_datas(6),
       i_cs => s_cs(6),
       i_oe => s_readnWrite,
-      i_we => (not s_readnWrite) and s_state = WRITE_M and i_irdy_l = '0'
+      i_we => (not s_readnWrite) and (not o_trdy_l) and (not i_irdy_l)
     );
 
   memory_module_top_inst_7 : entity work.memory_module_top
     port map
     (
+      i_clk => i_clk,
       i_reset => i_reset,
 
       i_addr => s_addr(17 downto 3),
       io_data => s_datas(7),
       i_cs => s_cs(7),
       i_oe => s_readnWrite,
-      i_we => (not s_readnWrite) and s_state = WRITE_M and i_irdy_l = '0'
+      i_we => (not s_readnWrite) and (not o_trdy_l) and (not i_irdy_l)
     );
 end architecture;

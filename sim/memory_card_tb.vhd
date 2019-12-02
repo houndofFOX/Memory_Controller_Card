@@ -33,7 +33,7 @@ architecture rtl of memory_card_tb is
       o_devsel_l          : out std_logic;
       o_trdy_l            : out std_logic;
       o_ack64_l           : out std_logic;
-      o_stop              : out std_logic
+      o_stop_l            : out std_logic
     );
   end component;
   
@@ -69,7 +69,7 @@ begin
     o_devsel_l          => s_devsel_l,
     o_trdy_l            => s_trdy_l,
     o_ack64_l           => s_ack64_l,
-    o_stop              => s_stop
+    o_stop_l            => s_stop
   );
 
   -- Generate ~66MHz clk (actual 66.6666666MHz)
@@ -84,9 +84,9 @@ begin
   stim: process
     procedure read64_single (i_addr : in std_logic_vector(31 downto 0)) is
     begin
-      wait until(rising_edge(s_clk));
       s_frame_l <= '0';
       s_addr_data <= i_addr;
+      s_data_upper <= (others => 'Z');
       s_cbe_lower_l <= c_cmd_read;
       s_irdy_l <= '1';
       s_req64_l <= '0';
@@ -103,6 +103,31 @@ begin
       s_cbe_upper_l <= (others => '1');
       s_irdy_l <= '1';
     end procedure read64_single;
+
+    procedure read64_burst (i_addr : in std_logic_vector(31 downto 0)) is
+    begin
+      wait until(rising_edge(s_clk));
+      s_frame_l <= '0';
+      s_addr_data <= i_addr;
+      s_data_upper <= (others => 'Z');
+      s_cbe_lower_l <= c_cmd_read;
+      s_irdy_l <= '1';
+      s_req64_l <= '0';
+      wait until(rising_edge(s_clk)); -- ADDR, CMD, REQ64 read in
+      s_addr_data <= (others => 'Z');  
+      s_cbe_lower_l <= (others => '0');
+      s_cbe_upper_l <= (others => '0');
+      wait until(rising_edge(s_clk)); -- Turnaround
+      s_irdy_l <= '0';
+      wait until(rising_edge(s_clk) and s_trdy_l = '0');
+      wait until(rising_edge(s_clk) and s_trdy_l = '0');
+      s_frame_l <= '1';
+      s_req64_l <= '1';
+      wait until(rising_edge(s_clk) and s_trdy_l = '0');  -- Data ready for transfer
+      s_cbe_lower_l <= (others => '1');
+      s_cbe_upper_l <= (others => '1');
+      s_irdy_l <= '1';
+    end procedure read64_burst;
   begin
     -- Set defaults, assume GNT from arbitor is received
     s_reset         <= '0';
@@ -118,8 +143,11 @@ begin
     wait until(rising_edge(s_clk));
     s_reset <= '1';
     wait until(rising_edge(s_clk));
-
-    read64_single(x"00000000");
-
+    s_reset <= '0';
+    wait until(rising_edge(s_clk));
+    read64_single(x"00000008");
+    wait for 50 ns;
+    read64_burst(x"00000000");
+    wait for 500 ms;
   end process;
 end architecture;
