@@ -24,16 +24,16 @@ Vcl:cZ<Eo_[oRXZCDh1FW72
 !s100 Z?3n_`J9F33:co><b:d;21
 Z6 OP;C;10.4a;61
 33
-Z7 !s110 1575343383
+Z7 !s110 1575403049
 !i10b 1
-Z8 !s108 1575343383.000000
+Z8 !s108 1575403049.000000
 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/global_package.vhd|
 !s107 D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/global_package.vhd|
 !i113 1
 Z9 o-work work -2008 -explicit -O0
 Z10 tExplicit 1
 Ememory_card_tb
-Z11 w1575343285
+Z11 w1575401958
 Z12 DPx4 work 14 global_package 0 22 cl:cZ<Eo_[oRXZCDh1FW72
 R2
 R0
@@ -49,11 +49,11 @@ V>d[18]K3K1blN8MXk>@e01
 !s100 Ld[QX^K`S@lI9oA0f14P43
 R6
 33
-Z15 !s110 1575343384
+R7
 !i10b 1
 R8
-Z16 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/sim/memory_card_tb.vhd|
-Z17 !s107 D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/sim/memory_card_tb.vhd|
+Z15 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/sim/memory_card_tb.vhd|
+Z16 !s107 D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/sim/memory_card_tb.vhd|
 !i113 1
 R9
 R10
@@ -64,35 +64,35 @@ R0
 R1
 R3
 R4
-Z18 DEx4 work 14 memory_card_tb 0 22 >d[18]K3K1blN8MXk>@e01
+Z17 DEx4 work 14 memory_card_tb 0 22 >d[18]K3K1blN8MXk>@e01
 l56
 L13
-Z19 VNgDB7Dj8^fCQY_7eV_YUJ3
-Z20 !s100 Il=dj;oo<X7V5WTJSKnmo2
+Z18 VJD9IMD7Z7?69F7:Z`ohGW2
+Z19 !s100 PSRGk_Kb:L4_C_8odcJJe1
 R6
 33
-R15
+R7
 !i10b 1
 R8
+R15
 R16
-R17
 !i113 1
 R9
 R10
 Ememory_card_top
-Z21 w1575341422
+Z20 w1575401307
 R12
-Z22 DPx8 synopsys 10 attributes 0 22 liCm]LV3<lX4Zl>o6^8IV1
-Z23 DPx4 ieee 14 std_logic_misc 0 22 BLzBaQbXS>Q1z>5YO]m[52
-Z24 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
+Z21 DPx8 synopsys 10 attributes 0 22 liCm]LV3<lX4Zl>o6^8IV1
+Z22 DPx4 ieee 14 std_logic_misc 0 22 BLzBaQbXS>Q1z>5YO]m[52
+Z23 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
 R0
 R1
 R2
 R3
 R4
 R5
-Z25 8D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_card_top.vhd
-Z26 FD:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_card_top.vhd
+Z24 8D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_card_top.vhd
+Z25 FD:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_card_top.vhd
 l0
 L13
 VPH=^C`QCQnooGGeQA6g^m2
@@ -102,17 +102,17 @@ R6
 R7
 !i10b 1
 R8
-Z27 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_card_top.vhd|
-Z28 !s107 D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_card_top.vhd|
+Z26 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_card_top.vhd|
+Z27 !s107 D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_card_top.vhd|
 !i113 1
 R9
 R10
 Amemory_card_top
-Z29 DEx4 work 17 memory_module_top 0 22 hHdiFLnfFfcF=bQZ@Ik`82
+Z28 DEx4 work 17 memory_module_top 0 22 hHdiFLnfFfcF=bQZ@Ik`82
 R12
+R21
 R22
 R23
-R24
 R0
 R1
 R2
@@ -121,20 +121,20 @@ R4
 DEx4 work 15 memory_card_top 0 22 PH=^C`QCQnooGGeQA6g^m2
 l78
 L35
-VYONz7>LW8LaWc]mR2`h291
-!s100 ZJ8UOL;NBgl4kD]LPiB103
+V1j@z6Fn^GZ0:1oz0A`6RQ2
+!s100 =e8]]PM]5UO;]VBFE^@Jf2
 R6
 33
 R7
 !i10b 1
 R8
+R26
 R27
-R28
 !i113 1
 R9
 R10
 Ememory_module_top
-Z30 w1575331609
+Z29 w1575345879
 R12
 R2
 R0
@@ -142,8 +142,8 @@ R1
 R3
 R4
 R5
-Z31 8D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_module_top.vhd
-Z32 FD:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_module_top.vhd
+Z30 8D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_module_top.vhd
+Z31 FD:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_module_top.vhd
 l0
 L9
 VhHdiFLnfFfcF=bQZ@Ik`82
@@ -153,8 +153,8 @@ R6
 R7
 !i10b 1
 R8
-Z33 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_module_top.vhd|
-Z34 !s107 D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_module_top.vhd|
+Z32 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_module_top.vhd|
+Z33 !s107 D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_module_top.vhd|
 !i113 1
 R9
 R10
@@ -165,18 +165,18 @@ R0
 R1
 R3
 R4
-R29
+R28
 l32
 L25
-VHW9WT>mZHTo>OeKzH=H0M0
-!s100 h?zZOmmXWFiXkENBIW52g1
+VCmKSF:L8=;AJ4LNTihcSo1
+!s100 ^924N@?LTn5BGgG_?Z4jZ1
 R6
 33
 R7
 !i10b 1
 R8
+R32
 R33
-R34
 !i113 1
 R9
 R10

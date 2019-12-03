@@ -116,6 +116,11 @@ begin
       s_irdy_l <= '0';
       wait until(rising_edge(s_clk) and s_trdy_l = '0');
       s_addr_data <= x"ABC3ABC2";
+      s_irdy_l <= '1';
+      wait until(rising_edge(s_clk));
+      wait until(rising_edge(s_clk));
+      s_irdy_l <= '0';
+      wait until(rising_edge(s_clk));
       wait until(rising_edge(s_clk) and s_trdy_l = '0');
       s_addr_data <= x"ABC5ABC4";
       s_frame_l <= '1';
@@ -262,6 +267,10 @@ begin
       wait until(rising_edge(s_clk)); -- Turnaround
       s_irdy_l <= '0';
       wait until(rising_edge(s_clk) and s_trdy_l = '0');
+      s_irdy_l <= '1';
+      wait until(rising_edge(s_clk));
+      wait until(rising_edge(s_clk));
+      s_irdy_l <= '0';
       wait until(rising_edge(s_clk) and s_trdy_l = '0');
       s_frame_l <= '1';
       s_req64_l <= '1';
