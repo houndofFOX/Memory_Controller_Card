@@ -30,21 +30,10 @@ architecture memory_module_top of memory_module_top is
   signal s_memory_blk     : t_array_slv (0 to c_memory_depth - 1)(7 downto 0);
 
 begin
-  -- TODO: io_data begin driven by multiple processes, consolidate
-
-  -- Reset
   process (i_reset, i_cs, i_oe, i_we, i_clk) is
   begin
+    -- Reset
     if (i_reset = '1') then
-      -- Reset all memory values to 0
-      -- s_memory_blk(0) <= x"EF";
-      -- s_memory_blk(1) <= x"BE";
-      -- s_memory_blk(2) <= x"AD";
-      -- s_memory_blk(3) <= x"DE";
-      -- s_memory_blk(4) <= x"E2";
-      -- s_memory_blk(5) <= x"AC";
-      -- s_memory_blk(6) <= x"E1";
-      -- s_memory_blk(7) <= x"AC";
       for i in 0 to c_memory_depth - 1 loop
         s_memory_blk(i) <= (others => '0');
       end loop;
