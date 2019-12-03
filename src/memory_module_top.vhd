@@ -37,15 +37,15 @@ begin
   begin
     if (i_reset = '1') then
       -- Reset all memory values to 0
-      s_memory_blk(0) <= x"EF";
-      s_memory_blk(1) <= x"BE";
-      s_memory_blk(2) <= x"AD";
-      s_memory_blk(3) <= x"DE";
-      s_memory_blk(4) <= x"E2";
-      s_memory_blk(5) <= x"AC";
-      s_memory_blk(6) <= x"E1";
-      s_memory_blk(7) <= x"AC";
-      for i in 8 to c_memory_depth - 1 loop
+      -- s_memory_blk(0) <= x"EF";
+      -- s_memory_blk(1) <= x"BE";
+      -- s_memory_blk(2) <= x"AD";
+      -- s_memory_blk(3) <= x"DE";
+      -- s_memory_blk(4) <= x"E2";
+      -- s_memory_blk(5) <= x"AC";
+      -- s_memory_blk(6) <= x"E1";
+      -- s_memory_blk(7) <= x"AC";
+      for i in 0 to c_memory_depth - 1 loop
         s_memory_blk(i) <= (others => '0');
       end loop;
       io_data <= (others => 'Z');

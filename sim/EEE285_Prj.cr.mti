@@ -1,4 +1,32 @@
-../src/global_package.vhd {1 {vcom -work work -2008 -explicit -stats=none {D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/global_package.vhd}
+../src/memory_card_top.vhd {1 {vcom -work work -2008 -explicit -stats=none {D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_card_top.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package MATH_REAL
+-- Loading package ATTRIBUTES
+-- Loading package std_logic_misc
+-- Loading package global_package
+-- Compiling entity memory_card_top
+-- Compiling architecture memory_card_top of memory_card_top
+-- Loading entity memory_module_top
+
+} {} {}} ../src/memory_module_top.vhd {1 {vcom -work work -2008 -explicit -stats=none {D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_module_top.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Loading package global_package
+-- Compiling entity memory_module_top
+-- Compiling architecture memory_module_top of memory_module_top
+
+} {} {}} ../src/global_package.vhd {1 {vcom -work work -2008 -explicit -stats=none {D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/global_package.vhd}
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -94,30 +122,6 @@ Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 
 -- Compiling package global_package
 
 } {} {}} C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/sim/memory_card_tb.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Samuel/Documents/2019-2020/EEE285/Project/Memory_Controller_Card/sim/memory_card_tb.vhd
-Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Loading package NUMERIC_STD
--- Loading package global_package
--- Compiling entity memory_card_tb
--- Compiling architecture rtl of memory_card_tb
-
-} {} {}} ../src/memory_module_top.vhd {1 {vcom -work work -2008 -explicit -stats=none {D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/src/memory_module_top.vhd}
-Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Loading package NUMERIC_STD
--- Loading package global_package
--- Compiling entity memory_module_top
--- Compiling architecture memory_module_top of memory_module_top
-
-} {} {}} memory_card_tb.vhd {1 {vcom -work work -2008 -explicit -stats=none {D:/Users/Samuel/Documents/19-20/EEE 285/Project/Design/sim/memory_card_tb.vhd}
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
 -- Loading package TEXTIO

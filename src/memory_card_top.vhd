@@ -51,6 +51,8 @@ architecture memory_card_top of memory_card_top is
 
   constant ZERO_ADDR          : std_logic_vector(13 downto 0) := "00000000000000";
   constant ZEROS              : std_logic_vector(31 downto 0) := x"00000000";
+  constant MAX_ADDR           : std_logic_vector(14 downto 0) := (others => '1');
+  constant MAX_WAIT           : integer := 7;
 
 ---------------------- SIGNALS ----------------------
   signal s_addr             : std_logic_vector(31 downto 0);
@@ -59,6 +61,7 @@ architecture memory_card_top of memory_card_top is
   signal s_cs_addr          : std_logic_vector(7 downto 0);
   signal s_datas            : t_array_slv (0 to 7)(7 downto 0);
   signal s_enable_64        : std_logic;  -- active high
+  signal s_wait_count       : integer range 0 to 7;
 
   type t_state is
     (
@@ -89,7 +92,7 @@ begin
     end if;
   end process;
 
-  -- Set chip selects
+  -- Set address-based chip selects
   process(i_reset, s_state, i_frame_l, io_addr_data, i_cbe_lower_l) is
   begin
     if (i_reset = '1') then
@@ -97,14 +100,14 @@ begin
     else
       if (s_state = IDLE) then
         s_cs_addr <= (others => '0');
-        if (i_frame_l = '0' and io_addr_data(31 downto 18) = ZERO_ADDR and i_cbe_lower_l /= DUAL_ADDR_CYCLE) then
+        if (i_frame_l = '0' and s_state /= IDLE and io_addr_data(31 downto 18) = ZERO_ADDR and i_cbe_lower_l /= DUAL_ADDR_CYCLE) then
           if (i_req64_l = '0') then
             s_cs_addr <= (others => '1');
           else
             s_cs_addr <= x"F0" when (io_addr_data(2) = '1') else x"0F";
           end if;
         end if;
-      elsif (s_state = READ_WAIT) then
+      elsif (s_state = READ_WAIT or s_state = WRITE_WAIT) then
         -- 64 bit
         if (s_enable_64 = '1') then
           s_cs_addr <= (others => '1');
@@ -131,7 +134,6 @@ begin
       -- Internal signals
       s_addr        <= (others => '0');
       s_readnWrite  <= '1';
-      -- s_cs_addr     <= (others => '0');
       for i in 0 to 7 loop
         s_datas(i) <= (others => '0');
       end loop;
@@ -148,11 +150,15 @@ begin
           o_trdy_l      <= 'Z';
           o_ack64_l     <= 'Z';
           o_stop_l      <= 'Z';
+          -- Allow s_datas to be written to by default
+          for i in 0 to 7 loop
+            s_datas(i) <= (others => 'Z');
+          end loop;
           -- Set signal defaults
           s_addr        <= (others => '0');
           s_readnWrite  <= '1';
-          -- s_cs_addr     <= (others => '0');
           s_enable_64   <= '0';
+          s_wait_count <= 0;
           -- Wait for Frame assert, check address and dual address mode
           if (i_frame_l = '0' and io_addr_data(31 downto 18) = ZERO_ADDR and i_cbe_lower_l /= DUAL_ADDR_CYCLE) then
             -- Configure outward facing signals
@@ -166,25 +172,13 @@ begin
             o_ack64_l   <= '0' when i_req64_l = '0' else '1';
             -- Configure internal signals
             -- Save addr to local register
-            s_addr      <= io_addr_data(31 downto 3) & "000";
-            -- Set chip selects
-            -- 64 bit
-            if (i_req64_l = '0') then
-              -- s_cs_addr <= (others => '1');
-            -- 32 bit
-            else
-              -- s_cs_addr <= x"F0" when (io_addr_data(2) = '1') else x"0F";
-            end if;
+            s_addr      <= io_addr_data(31 downto 2) & "00";
             -- Save 64 bit toggle
             s_enable_64 <= '1' when i_req64_l = '0' else '0';
             -- Memory Read
             if (i_cbe_lower_l = MEM_READ) then
               -- Set read not write
               s_readnWrite <= '1';
-              -- Allow s_datas to be written to
-              for i in 0 to 7 loop
-                s_datas(i) <= (others => 'Z');
-              end loop;
               -- Next state: Read Turnaround
               s_state <= READ_TA;
             -- Memory Write
@@ -193,7 +187,7 @@ begin
               s_readnWrite <= '0';
               -- Control s_datas
               for i in 0 to 7 loop
-                s_datas(i) <= (others => 'Z');
+                s_datas(i) <= (others => '0');
               end loop;
               -- Next State
               s_state <= WRITE_WAIT;
@@ -210,32 +204,31 @@ begin
           s_state <= READ_WAIT;
         -- READ wait state
         when READ_WAIT =>
-          o_trdy_l <= '0';
-          -- Set chip selects
-          -- 64 bit
-          if (s_enable_64 = '1') then
-            -- s_cs_addr <= (others => '1');
-          -- 32 bit
-          else
-            -- s_cs_addr <= x"F0" when (s_addr(2) = '1') else x"0F";
-          end if;
+          -- Check for address overflow
+          if (s_addr > MAX_ADDR) then
+            o_stop_l <= '0';
+            s_state <= STOP_TERM;
           -- Load Data to PCI lines
-          for i in 0 to 3 loop
-            if (s_enable_64 = '1') then
-              -- Lower 32 bits
-              io_addr_data((8 * i + 7) downto (8 * i)) <= s_datas(i) when i_cbe_lower_l(i) = '0' else (others => '0');
-              -- Upper 32 bits
-              -- Byte enabled, load data
-              io_data_upper((8 * i + 7) downto (8 * i)) <= s_datas(i + 4) when i_cbe_upper_l(i) = '0' else (others => '0');
-            else
-              if (s_addr(2) = '0') then
+          else
+            o_trdy_l <= '0';
+            s_wait_count <= 0;
+            for i in 0 to 3 loop
+              if (s_enable_64 = '1') then
+                -- Lower 32 bits
                 io_addr_data((8 * i + 7) downto (8 * i)) <= s_datas(i) when i_cbe_lower_l(i) = '0' else (others => '0');
+                -- Upper 32 bits
+                -- Byte enabled, load data
+                io_data_upper((8 * i + 7) downto (8 * i)) <= s_datas(i + 4) when i_cbe_upper_l(i) = '0' else (others => '0');
               else
-                io_addr_data((8 * i + 7) downto (8 * i)) <= s_datas(i + 4) when i_cbe_lower_l(i) = '0' else (others => '0');
+                if (s_addr(2) = '0') then
+                  io_addr_data((8 * i + 7) downto (8 * i)) <= s_datas(i) when i_cbe_lower_l(i) = '0' else (others => '0');
+                else
+                  io_addr_data((8 * i + 7) downto (8 * i)) <= s_datas(i + 4) when i_cbe_lower_l(i) = '0' else (others => '0');
+                end if;
               end if;
-            end if;
-          end loop;
-          s_state <= READ_M;
+            end loop;
+            s_state <= READ_M;
+          end if;
         when READ_M =>
           -- Check IRDY asserted, TRDY, DEVSEL controled by mem card
           if (i_irdy_l = '0') then
@@ -256,16 +249,81 @@ begin
               o_ack64_l <= '1';
               s_state <= IDLE;
             end if;
+          else
+            -- Timeout handling
+            if (s_wait_count = MAX_WAIT) then
+              io_addr_data <= (others => 'Z');
+              io_data_upper <= (others => 'Z');
+              o_trdy_l <= '1';
+              o_stop_l <= '0';
+              s_state <= STOP_TERM;
+            elsif (s_wait_count < MAX_WAIT) then
+              s_wait_count <= s_wait_count + 1;
+            end if;
           end if;
         when WRITE_WAIT =>
-          -- Placeholder
-          s_state <= IDLE;
+          -- Check for address overflow
+          if (s_addr > MAX_ADDR) then 
+            o_stop_l <= '0';
+            s_state <= STOP_TERM;
+          else
+            o_trdy_l <= '0';
+            if (i_irdy_l = '0') then
+              -- All values are populated in s_data, Chip Select determines what will be overwritten.
+              for i in 0 to 3 loop
+                -- 64 bit
+                if (s_enable_64 = '1') then
+                  -- Lower 32 bits
+                  s_datas(i) <= io_addr_data((8 * i + 7) downto (8 * i));
+                  -- Upper 32 bits
+                  s_datas(i + 4) <= io_data_upper((8 * i + 7) downto (8 * i));
+                -- 32 bit
+                else
+                  if (s_addr(2) = '0') then
+                    s_datas(i) <= io_addr_data((8 * i + 7) downto (8 * i));
+                  else
+                    s_datas(i + 4) <= io_addr_data((8 * i + 7) downto (8 * i));
+                  end if;
+                end if;
+              end loop;
+              s_state <= WRITE_M;
+            else
+              --Timeout handling
+              if (s_wait_count = MAX_WAIT) then
+                io_addr_data <= (others => 'Z');
+                io_data_upper <= (others => 'Z');
+                o_trdy_l <= '1';
+                o_stop_l <= '0';
+                s_state <= STOP_TERM;
+              elsif (s_wait_count < MAX_WAIT) then
+                s_wait_count <= s_wait_count + 1;
+              end if;
+            end if;
+          end if;
         when WRITE_M =>
-          -- Placeholder
-          s_state <= IDLE;
+          s_wait_count <= 0;
+          -- Burst Mode
+          if (i_frame_l = '0') then
+            -- Increment address
+            s_addr <= std_logic_vector(unsigned(s_addr) + 8) when s_enable_64 = '1' else std_logic_vector(unsigned(s_addr) + 4);
+            -- Hold bus in wait
+            o_trdy_l <= '1';
+            -- Return to wait state
+            s_state <= WRITE_WAIT;
+          else
+            -- Set outputs to inactive to complete transmission
+            -- Returns to tristate on return to idle.
+            o_devsel_l <= '1';
+            o_trdy_l <= '1';
+            o_ack64_l <= '1';
+            s_state <= IDLE;
+          end if;
         when STOP_TERM =>
           -- Wait for PCI termination protocol
           if (i_irdy_l = '0' and i_frame_l = '1') then
+            o_stop_l <= '1';
+            o_devsel_l <= '1';
+            o_ack64_l <= '1';
             s_state <= IDLE;
           end if;
       end case;

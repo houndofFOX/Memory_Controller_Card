@@ -10,7 +10,7 @@ add wave -group "Testbench Signals" /memory_card_tb/s_req64_l
 add wave -group "Testbench Signals" /memory_card_tb/s_devsel_l
 add wave -group "Testbench Signals" /memory_card_tb/s_trdy_l
 add wave -group "Testbench Signals" /memory_card_tb/s_ack64_l
-add wave -group "Testbench Signals" /memory_card_tb/s_stop
+add wave -group "Testbench Signals" /memory_card_tb/s_stop_l
 
 add wave -group "Memory Card Signals" /memory_card_tb/uut/i_clk
 add wave -group "Memory Card Signals" /memory_card_tb/uut/i_reset
@@ -31,6 +31,7 @@ add wave -group "Memory Card Signals" /memory_card_tb/uut/s_cs
 add wave -group "Memory Card Signals" /memory_card_tb/uut/s_cs_addr
 add wave -group "Memory Card Signals" -radix Hexadecimal /memory_card_tb/uut/s_datas
 add wave -group "Memory Card Signals" /memory_card_tb/uut/s_enable_64
+add wave -group "Memory Card Signals" -radix Unsigned /memory_card_tb/uut/s_wait_count
 add wave -group "Memory Card Signals" /memory_card_tb/uut/s_state
 
 add wave -group "Memory Module 0" /memory_card_tb/uut/memory_module_top_inst_0/i_clk
@@ -105,5 +106,4 @@ add wave -group "Memory Module 7" /memory_card_tb/uut/memory_module_top_inst_7/i
 add wave -group "Memory Module 7" /memory_card_tb/uut/memory_module_top_inst_7/i_we
 add wave -group "Memory Module 7" -radix Hexadecimal /memory_card_tb/uut/memory_module_top_inst_7/s_memory_blk
 
-
-
+run 3500ns
